@@ -1,0 +1,61 @@
+{
+  "name": "opencode-chat",
+  "version": "1.0.0",
+  "description": "Interface desktop pour OpenCode - Chat + Historique",
+  "main": "electron/main.js",
+  "author": "opencode chat",
+  "license": "MIT",
+  "type": "commonjs",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "prebuild": "node scripts/write-build-info.js",
+    "build": "electron-builder --win portable --x64",
+    "dist": "electron-builder",
+    "pack": "electron-builder --dir"
+  },
+  "dependencies": {
+    "marked": "^12.0.0",
+    "highlight.js": "^11.9.0",
+    "dompurify": "^3.0.0"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "ai.opencode.chat",
+    "productName": "opencode chat",
+    "copyright": "Copyright © 2026 opencode chat",
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "portable": {
+      "artifactName": "opencode-chat-Portable-${version}.exe"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "alphasiix",
+        "repo": "OpenCode-Chat"
+      }
+    ],
+    "directories": {
+      "output": "dist",
+      "buildResources": "assets"
+    },
+    "files": [
+      "electron/**/*",
+      "src/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "extraResources": [],
+    "asar": true
+  }
+}

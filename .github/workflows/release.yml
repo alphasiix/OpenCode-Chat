@@ -1,0 +1,46 @@
+# Build auto du portable .exe + mise à jour de l'unique release "latest".
+# À chaque push sur main : build Windows → upload le .exe dans la release
+# taggée "latest" (créée si besoin, asset remplacé). L'app détecte le nouvel
+# asset via l'API GitHub et affiche la popup de mise à jour.
+name: Build & Release portable
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build portable .exe
+        run: npm run build
+
+      - name: Publish to "latest" release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Latest build
+          body: |
+            Build automatique du portable **opencode chat** (sans installation, double-clic).
+            Commit : ${{ github.sha }}
+          draft: false
+          prerelease: false
+          make_latest: true
+          fail_on_unmatched_files: true
+          files: dist/opencode-chat-Portable-*.exe
