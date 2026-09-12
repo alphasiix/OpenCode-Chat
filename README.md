@@ -36,7 +36,7 @@ opencode serve --port 4096
 npm run build
 ```
 
-Sortie dans `dist/` : `opencode-chat-Portable-1.0.0.exe` — double-clic, pas d'installation.
+Sortie dans `dist/` : `opencode-chat.exe` — double-clic, pas d'installation.
 
 ## 🔄 Mise à jour auto (1 seule release)
 

@@ -37,7 +37,7 @@
       "icon": "assets/icon.png"
     },
     "portable": {
-      "artifactName": "opencode-chat-Portable-${version}.exe"
+      "artifactName": "opencode-chat.exe"
     },
     "publish": [
       {
