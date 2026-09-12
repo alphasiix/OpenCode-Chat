@@ -33,7 +33,8 @@
           "target": "portable",
           "arch": ["x64"]
         }
-      ]
+      ],
+      "icon": "assets/icon.png"
     },
     "portable": {
       "artifactName": "opencode-chat-Portable-${version}.exe"
